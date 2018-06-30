@@ -934,7 +934,8 @@ class Context(object):
         return path
 
 
-def connect(**kwargs):
+def connect(host='localhost', port=8089, scheme='https', owner=None, app=None, sharing='user',
+            token=_NoAuthenticationToken, cookie=_NoAuthenticationToken, username='', password='', autologin=False):
     """This function returns an authenticated :class:`Context` object.
 
     This function is a shorthand for calling :meth:`Context.login`.
@@ -975,7 +976,8 @@ def connect(**kwargs):
         c = binding.connect(...)
         response = c.get("apps/local")
     """
-    c = Context(**kwargs)
+    c = Context(host=host, port=port, scheme=scheme, owner=owner, app=app, sharing=sharing, token=token, cookie=cookie,
+                username=username, password=password, autologin=autologin)
     c.login()
     return c
 
